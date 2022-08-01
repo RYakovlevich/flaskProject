@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    {% for post in posts %}
+    <a href="{{url_for('posts.show_post', post_id=post['id'])}}">
+        <h2>{{ post['title'] }}</h2>
+    </a>
+    <span class="badge badge-primary">{{ post['created']}}</span>
+    <hr>
+{% endfor %}
+{% endblock %}

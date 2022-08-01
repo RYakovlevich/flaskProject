@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Project</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'css/style.css') }}">
+</head>
+<body>
+<h1> welcam! </h1>
+<h2>Привет, разбраб </h2>
+<p>{{ hi }}</p>
+{% for h in hi:%}
+<p>{{h}}</p>
+{% endfor %}
+</body>
+</html>

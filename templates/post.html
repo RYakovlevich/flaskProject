@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <h2>{% block title %} {{ post['title'] }} {%endblock %}</h2>
+    <span class="badge badge-primary">{{ post['created']}}</span>
+
+    <a href="{{url_for('posts.edit_post', post_id=post['id']) }}">
+        <span class="badge badge-primary" style="color: white"> edit</span>
+    </a>
+    <p>{{post['content'].replace('\r\n', '<br>') | safe }}</p>
+{% endblock %}
