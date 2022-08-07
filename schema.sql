@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS user;
 
-CREATE TABLE posts (
+CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    title TEXT NOT NULL,
-    content TEXT NOT NULL
+    email varchar(100) NOT NULL unique ,
+    password varchar(100),
+    name varchar(100)
 );

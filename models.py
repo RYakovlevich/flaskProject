@@ -1,9 +1,9 @@
 from datetime import datetime
-from start import db
+from settings import db
 
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created = db.Column(db.DateTime, default=datetime.now())
-    title = db.Column(db.text)
-    content = db.Column(db.text)
+    created = db.Column(db.DateTime, default=datetime.now().replace(microsecond=0))
+    title = db.Column(db.Text)
+    content = db.Column(db.Text)

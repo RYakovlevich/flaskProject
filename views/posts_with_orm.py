@@ -2,8 +2,9 @@ from flask import Flask, render_template, abort, request, flash
 from flask import redirect, url_for
 from flask import Blueprint
 from models import Posts
-from start import db
+from settings import db
 
+from flask_login import login_required
 
 postsbp = Blueprint('posts', __name__)
 
@@ -29,6 +30,7 @@ def show_post(post_id):
 
 
 @postsbp.route('/post/create', methods=('GET', 'POST'))
+@login_required
 def create_post():
     if request.method == 'POST':
         title = request.form['title']
@@ -42,11 +44,12 @@ def create_post():
             posts_ = Posts(title=title, content=content)
             db.session.add(posts_)
             db.session.commit()
-            return redirect(url_for('posts.index'))
+            return redirect(url_for('posts.main'))
     return render_template('create.html')
 
 
 @postsbp.route('/post/edit/<int:post_id>', methods=('GET', 'POST'))
+@login_required
 def edit_post(post_id):
     posts_ = Posts.query.filter_by(id=post_id).first()
 
@@ -66,6 +69,7 @@ def edit_post(post_id):
 
 
 @postsbp.route('/post/delete/<int:post_id>', methods=('POST',))
+@login_required
 def delete_post(post_id):
     posts_= Posts.query.filter_by(id=post_id).first()
     db.session.delete(posts_)
